@@ -1,35 +1,51 @@
-// Toglogchiin eeljiig hadgalah huwisagch , negdugeer toglogchiig 0 , hoyrdugaar toglogchiig 1 gj temdegley
+// Togloomiin buh gazart ashiglagdah global huwisagchdiig end zarlay
+var activePlayer;
+var scores;
+var roundScore;
 
-var activePlayer = 0;
-
-
-// Toglogchiin tsugluulsan onoog hadgalah huwisagch
-
-var scores = [0, 0];
-
-//Toglogchiin eeljindee tsugluulj  baigaa onoog hadgalah huwisagch
-
-var roundScore = 0;
-// Shoonii ali talaaraa buusniig hadgalah huwisgach heregtei. 1-6 gesen utgiig ene huwisagchid sanamsargugeer uusgej ogno
-
-var diceNumber = Math.floor(Math.random() * 6) + 1; // 1 - 6 hurtelh sanamsargu utga gargaj bna
-
-
-
-
-//togloom ehelhed beltgey
-document.getElementById("score-0").textContent = '0'; // id aar duudaj ajillahaar bol getElementById
-document.getElementById("score-1").textContent = '0';
-document.getElementById("current-0").textContent = '0';
-document.getElementById("current-1").textContent = '0';
-
+//Shoonii zurgiig uzuuleh elementiig DOM - oos haij olood end hadgalya.
 var diceDom = document.querySelector(".dice");
-diceDom.style.display = "none";
+
+initGame();
+// Togloomiig shineer ehlehed beltgeh.
+function initGame() {
+    // Toglogchiin eeljiig hadgalah huwisagch , negdugeer toglogchiig 0 , hoyrdugaar toglogchiig 1 gj temdegley
+    activePlayer = 0;
+
+    // Toglogchiin tsugluulsan onoog hadgalah huwisagch
+    scores = [0, 0];
+
+    //Toglogchiin eeljindee tsugluulj  baigaa onoog hadgalah huwisagch
+    roundScore = 0;
+
+    //togloom ehelhed beltgey
+    document.getElementById("score-0").textContent = '0'; // id aar duudaj ajillahaar bol getElementById
+    document.getElementById("score-1").textContent = '0';
+    document.getElementById("current-0").textContent = '0';
+    document.getElementById("current-1").textContent = '0';
+
+    //Toglogchdiin neriig butsaaj gargah
+    document.getElementById("name-0").textContent = "Player 1";
+    document.getElementById("name-1").textContent = "Player 1";
+    //
+    document.querySelector(".player-0-panel").classList.remove('winner');
+    document.querySelector(".player-1-panel").classList.remove('winner');
+
+    //
+    document.querySelector(".player-0-panel").classList.remove('active');
+    document.querySelector(".player-1-panel").classList.remove('active');
+
+    //
+    document.querySelector(".player-0-panel").classList.add('active');
+
+    diceDom.style.display = "none";
+}
+
 
 // shoog shideh event listener
 document.querySelector(".btn-roll").addEventListener("click", function shooShid() {
     // 1 - 6 hurtelh sanamsargu utga gargaj bna
-    var diceNumber = Math.floor(Math.random() * 6) + 1;
+    var diceNumber = Math.floor(Math.random() * 6) + 1; // 1 - 6 hurtelh sanamsargu utga gargaj bna
 
 
     // shoonii zurgiig web deer duudaj gargaj irne.
@@ -55,13 +71,8 @@ document.querySelector(".btn-roll").addEventListener("click", function shooShid(
 // Hold tovchnii event listener
 
 document.querySelector('.btn-hold').addEventListener('click', function () {
-    // Ug toglogchiin tsugluulsan eeljnii onoog global onoon deer nemj ogno
 
-    // if (activePlayer === 0) {
-    //     scores[0] = scores[0] + roundScore;
-    // } else {
-    //     scores[1] = scores[1] + roundScore;
-    // }
+    // Ug toglogchiin tsugluulsan eeljnii onoog global onoon deer nemj ogno
 
     scores[activePlayer] = scores[activePlayer] + roundScore;
 
@@ -101,7 +112,7 @@ function switchToNextPlayer() {
 
 // Shine togloom ehluuleh event listener
 document.querySelector(".btn-new").addEventListener("click", function () {
-    alert("clicked");
+    initGame();
 });
 
 
