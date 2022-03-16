@@ -88,7 +88,7 @@ document.querySelector('.btn-hold').addEventListener('click', function () {
         document.getElementById('score-' + activePlayer).textContent = scores[activePlayer];
 
         //Ug toglogch hojson esehiig shalgah
-        if (scores[activePlayer] >= 10) {
+        if (scores[activePlayer] >= 100) {
             //Тоглоомыг дууссан төлөвт оруулна.
             isNewGame = false;
             document.getElementById('name-' + activePlayer).textContent = 'Winner';
